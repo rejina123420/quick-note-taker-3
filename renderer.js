@@ -32,6 +32,44 @@ saveAsBtn.addEventListener('click', async () => {
         statusEl.textContent = 'Save As cancelled.';
     }
 });
+// NEW: New Note button
+const newNoteBtn = document.getElementById('new-note');
+newNoteBtn.addEventListener('click', async () => {
+  // If no unsaved changes, clear immediately
+  if (textarea.value === lastSavedText) {
+    textarea.value = '';
+    lastSavedText = '';
+    statusEl.textContent = 'New note started.';
+    return;
+  }
+
+  // If there are unsaved changes, ask the user first
+  const result = await window.electronAPI.newNote();
+  if (result.confirmed) {
+    textarea.value = '';
+    lastSavedText = '';
+    statusEl.textContent = 'New note started.';
+  } else {
+    statusEl.textContent = 'New note cancelled.';
+  }
+});
+// NEW: Menu action listeners
+
+window.electronAPI.onMenuAction('menu-new-note', () => {
+    newNoteBtn.click();   // reuse the existing button logic
+});
+
+window.electronAPI.onMenuAction('menu-open-file', () => {
+    openFileBtn.click();  // reuse the existing button logic
+});
+
+window.electronAPI.onMenuAction('menu-save', () => {
+    saveBtn.click();      // reuse the existing button logic
+});
+
+window.electronAPI.onMenuAction('menu-save-as', () => {
+    saveAsBtn.click();    // reuse the existing button logic
+});
 
     async function autoSave() {
         const currentText = textarea.value;
@@ -58,6 +96,15 @@ saveAsBtn.addEventListener('click', async () => {
     });
 
 });
+
+
+
+
+
+
+
+
+
 // NEW: Open file button
 const openFileBtn = document.getElementById( 'open-file');
 
