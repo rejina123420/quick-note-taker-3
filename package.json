@@ -72,5 +72,13 @@
     "wrappy": "^1.0.2",
     "yauzl": "^2.10.0"
   },
-  "description": ""
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rejina123420/quick-note-taker-3.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rejina123420/quick-note-taker-3/issues"
+  },
+  "homepage": "https://github.com/rejina123420/quick-note-taker-3#readme"
 }
