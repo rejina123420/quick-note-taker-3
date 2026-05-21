@@ -6,7 +6,7 @@ app.disableHardwareAcceleration();
 
 // This comment is to test the git
 
-const path = require('node:path');
+const path = require('node:path');   
 const fs = require('node:fs');
 
 const notesFilePath = path.join(app.getPath('documents'), 'notes.json');
